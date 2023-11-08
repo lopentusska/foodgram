@@ -3,7 +3,7 @@ https://github.com/lopentus/foodgram-project-react
 
 ### Create .env file with the following script
 ```bash
-cd postgram/
+cd foodgram/
 echo '''DB_NAME=foodgram_db
 POSTGRES_USER=foodgram_user
 POSTGRES_PASSWORD=foodgram_password
