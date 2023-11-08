@@ -11,8 +11,7 @@ DB_HOST=localhost
 DB_PORT=5432
 DJANGO_SECRET_KEY=your_secret_key
 DJANGO_DEBUG=True
-DJANGO_ALLOWED_HOSTS=127.0.0.1 localhost
-```
+DJANGO_ALLOWED_HOSTS=127.0.0.1 localhost``` > .env
 
 #### setup dev
 create env
