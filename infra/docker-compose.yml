@@ -1,7 +1,7 @@
 version: '3.3'
 
 volumes:
-  foodgram_postgres:
+  foodgram_data:
   static:
   media:
 
@@ -9,28 +9,52 @@ services:
   db:
     image: postgres:13.10
     volumes:
-      - foodgram_postgres:/var/lib/postgresql/data/
+      - foodgram_data:/var/lib/postgresql/data/
+    expose:
+      - 5432
     env_file:
-      - ./.env
+      - ../.env
+    environment:
+      DB_NAME: postgres
+      DB_HOST: db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+
   backend:
-    image: lopentusska/foodgram_backend:latest
+    build: ../backend/
+    restart: always
+    expose:
+      - 8000
     env_file:
-      - ./.env
+      - ../.env
+    environment:
+      DB_NAME: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      DB_HOST: db
+    command: >
+      sh -c "cd /app/ &&
+             python3 manage.py migrate &&
+             cd /app/ &&
+             gunicorn --bind 0.0.0.0:8000 foodgram.wsgi:application"
     volumes:
       - static:/app/static/
       - media:/app/media/
     depends_on:
       - db
+
   frontend:
-    image: lopentusska/foodgram_frontend:latest
+    build: ../frontend/
     volumes:
       - ../frontend/:/app/result_build/
     depends_on:
+      - db
       - backend
+
   nginx:
     image: nginx:1.19.3
     ports:
-      - "10000:80"
+      - "8000:80"
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
       - ../frontend/build:/usr/share/nginx/html/
