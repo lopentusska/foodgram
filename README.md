@@ -1,8 +1,8 @@
 # Foodgram
 ## Used technologies:
-### Django
-### Django REST
-### React
+#### Django
+#### Django REST
+#### React
 
 ## Start the project:
 
