@@ -1,5 +1,11 @@
 # Foodgram
-https://github.com/lopentus/foodgram-project-react
+
+## Start the project:
+
+### Clone the repository
+```bash
+git clone https://github.com/lopentus/foodgram-project-react
+```
 
 ### Create .env file with the following script
 ```bash
@@ -14,31 +20,60 @@ DJANGO_DEBUG=True
 DJANGO_ALLOWED_HOSTS=127.0.0.1 localhost''' > .env
 ```
 
-#### setup dev
-create env
-source venv/bin/activate 
-cd backend/
-pip install -r requirements.txt
+# Run project in docker:
+```bash
+docker compose up -d
+```
+#### wait some time to let docker build containers
 
-### launch the project
-python manage.py migrate
-python manage.py load_ingredients
-python manage.py runserver
+#### logs:
+```bash
+docker logs <container_name> -f
+```
 
-#### setup docker
-cd foodgram-project-react/infra/
-sudo docker compose -f docker-compose.yml up -d
-sudo docker compose -f docker-compose.yml exec backend python manage.py migrate
-sudo docker compose -f docker-compose.yml exec backend python manage.py load_ingredients
-sudo docker compose -f docker-compose.yml exec backend python manage.py collectstatic
-sudo docker compose -f docker-compose.yml exec backend cp -r /app/static/. /var/html/
+#### stop containers:
+```bash
+docker compose down
+```
 
+# Run locally:
+
+## Start backend
+
+### postgresql
+```bash
+sudo su postgres
+psql
 CREATE DATABASE foodgram_db;
 CREATE USER foodgram_user WITH PASSWORD 'foodgram_password';
 GRANT ALL PRIVILEGES ON DATABASE foodgram_db TO foodgram_user;
 ALTER USER foodgram_user CREATEDB;
+```
 
+### Create venv and install requirements.txt
+```bash
+cd backend/
+python -m venv venv
+source venv/bin/activate
+pip install --upgrade pip
+pip install -r requirements.txt
+```
+
+### Run migrations and start server
+```bash
 python manage.py migrate
+python manage.py load_ingredients
+python manage.py runserver
+```
 
-npm install
+### Optionally create superuser
+```bash
+python manage.py createsuperuser
+```
+
+## Start frontend
+```bash
+cd frontend/
+npm install 
 npm start
+```

@@ -33,10 +33,13 @@ services:
       POSTGRES_PASSWORD: postgres
       DB_HOST: db
     command: >
-      sh -c "cd /app/ &&
-             python3 manage.py migrate &&
+      sh -c "python3 /app/manage.py migrate &&
+             python3 /app/manage.py load_ingredients &&
+             python3 /app/manage.py collectstatic --noinput &&
+             cp -r /app/static/. /var/html/ &&
              cd /app/ &&
-             gunicorn --bind 0.0.0.0:8000 foodgram.wsgi:application"
+             gunicorn --bind 0.0.0.0:8000 foodgram.wsgi:application
+             "
     volumes:
       - static:/app/static/
       - media:/app/media/
