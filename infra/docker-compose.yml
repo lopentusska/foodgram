@@ -48,6 +48,10 @@ services:
 
   frontend:
     build: ../frontend/
+    env_file:
+      - ../.env
+    environment:
+      REACT_PROXY: http://web:8000/
     volumes:
       - ../frontend/:/app/result_build/
     depends_on:

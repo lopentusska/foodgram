@@ -7,6 +7,9 @@
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "classnames": "^2.2.6",
+    "cross-env": "^7.0.3",
+    "http-proxy-middleware": "^2.0.6",
+    "http-simple-proxy": "^1.0.5",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-meta-tags": "^1.0.1",
@@ -37,6 +40,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "proxy": "http://web:8000/"
+  }
 }
