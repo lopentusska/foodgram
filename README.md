@@ -23,6 +23,7 @@ REACT_PROXY=http://localhost:8000/''' > .env
 
 # Run project in docker:
 ```bash
+cd infra
 docker compose up -d
 ```
 #### wait some time to let docker build containers
