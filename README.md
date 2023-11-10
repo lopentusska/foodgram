@@ -50,6 +50,7 @@ docker compose down
 ```
 
 # Run locally:
+## python3.9 node13.12.0
 
 ## Frontend runs on the port 3000
 ## Backend runs on the port 8000
