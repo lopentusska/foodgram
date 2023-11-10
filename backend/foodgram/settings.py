@@ -3,6 +3,8 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
+from docs.foodgram_description import PROJECT_DESCRIPTION
+
 
 load_dotenv()
 
@@ -30,6 +32,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'djoser',
     'django_filters',
+    'drf_spectacular',
     # Local
     'users',
     'recipes',
@@ -128,6 +131,7 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 6,
     'DEFAULT_FILTER_BACKEND':
         ('django_filters.rest_framework.DjangoFilterBackend',),
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
 
 DJOSER = {
@@ -146,3 +150,9 @@ DJOSER = {
 INTERNAL_IPS = [
     '127.0.0.1',
 ]
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Foodgram Project',
+    'DESCRIPTION': f'{PROJECT_DESCRIPTION}',
+    'VERSION': '1.0.0',
+}

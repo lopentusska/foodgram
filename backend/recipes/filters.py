@@ -1,15 +1,15 @@
-from django_filters.widgets import CSVWidget
 from django_filters.rest_framework import FilterSet, filters
+from django_filters.fields import MultipleChoiceField
 
 from recipes.models import Recipe
 
 
+class TagsFilter(filters.AllValuesMultipleFilter):
+    field_class = MultipleChoiceField
+
+
 class TagFilter(FilterSet):
-    tags = filters.BaseCSVFilter(
-        distinct=True,
-        widget=CSVWidget(),
-        method='filter_tags'
-    )
+    tags = TagsFilter(field_name='tags__slug')
     author = filters.NumberFilter(
         field_name='author__id',
         lookup_expr='exact',
@@ -20,9 +20,6 @@ class TagFilter(FilterSet):
     is_in_shopping_cart = filters.BooleanFilter(
         method='filter_is_in_shopping_cart',
     )
-
-    def filter_tags(self, queryset, name, value):
-        return queryset.filter(tags__slug__in=value)
 
     def filter_is_favorited(self, queryset, name, value):
         if value:
