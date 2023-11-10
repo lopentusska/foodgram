@@ -1,4 +1,8 @@
 # Foodgram
+## visit http://localhost:8000/api/schema/redoc/ to check out api endpoints
+
+### Embark on a culinary adventure with Foodgram, a dynamic web application seamlessly blending the power of Django REST API and React. From user-friendly registration to intuitive recipe creation, curated favorites, and efficient shopping list management, Foodgram enriches your cooking experience. With a community-centric approach, connect with fellow food enthusiasts, explore diverse recipes through tag-based filtering, and enjoy the responsive design for a delightful journey into the world of flavors and aromas. Join Foodgram today and turn your kitchen into a canvas of creativity!
+
 ## Used technologies:
 #### Django
 #### Django REST
@@ -26,6 +30,9 @@ REACT_APP_REACT_PROXY=http://localhost:8000/''' > .env
 ```
 
 # Run project in docker:
+
+## Runs on the localhost:8000
+
 ```bash
 cd infra
 docker compose up -d
@@ -43,6 +50,9 @@ docker compose down
 ```
 
 # Run locally:
+
+## Frontend runs on the port 3000
+## Backend runs on the port 8000
 
 ## Start backend
 
@@ -69,6 +79,7 @@ pip install -r requirements.txt
 ```bash
 python manage.py migrate
 python manage.py load_ingredients
+python manage.py load_tags
 python manage.py runserver
 ```
 

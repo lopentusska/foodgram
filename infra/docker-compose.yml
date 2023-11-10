@@ -35,6 +35,7 @@ services:
     command: >
       sh -c "python3 /app/manage.py migrate &&
              python3 /app/manage.py load_ingredients &&
+             python3 /app/manage.py load_tags &&
              python3 /app/manage.py collectstatic --noinput &&
              cp -r /app/static/. /var/html/ &&
              cd /app/ &&
