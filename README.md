@@ -12,7 +12,7 @@
 
 ### Clone the repository
 ```bash
-git clone https://github.com/lopentus/foodgram-project-react
+git clone git@github.com:lopentusska/foodgram.git
 ```
 
 ### Create .env file with the following script
