@@ -21,7 +21,7 @@ services:
       POSTGRES_PASSWORD: postgres
 
   backend:
-    build: ../backend/
+    image: lopentusska/foodgram_backend:latest
     restart: always
     expose:
       - 8000
@@ -48,7 +48,7 @@ services:
       - db
 
   frontend:
-    build: ../frontend/
+    image: lopentusska/foodgram_frontend:latest
     env_file:
       - ../.env
     environment:
